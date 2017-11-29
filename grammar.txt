@@ -1,0 +1,26 @@
+== Shell expression grammar ==
+
+= Tokens =
+&         = BACKGROUND
+&&        = AND
+|         = PIPE
+||        = OR
+>         = REDIR_OUT
+<         = REDIR_IN
+;         = END_EXPR
+(         = SUB_OPEN
+)         = SUB_CLOSE
+<newline> = NEWLINE
+_         = WORD
+
+
+= GRAMMAR =
+
+list := command_list { (END_EXPR | NEWLINE) list }
+command_list := pipeline { (AND | OR | BACKGROUND) command_list }
+pipeline := command [ (PIPE) pipeline ]
+command := WORD { WORD } [ redir ] [ redir ]
+           SUB_OPEN list SUB_CLOSE
+redir := REDIR_OUT WORD
+         REDIR_IN WORD
+
