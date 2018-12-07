@@ -53,7 +53,7 @@ static parse_tree *parse_command(lexer_token_list *tokens) {
         if (!next || get_token_type(next) != TOKEN_SUBSHELL_CLOSE) {
             free_parse_tree(subexp);
             free_token_list_container(original_tokens);
-            return error_tree("Expected ( to terminate subexpression");
+            return error_tree("Expected ) to terminate subexpression");
         }
         consume_token(tokens);
         return subexp;

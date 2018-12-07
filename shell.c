@@ -13,7 +13,6 @@
 #include "util.h"
 
 void do_command(char *command) {
-    // For now, display tokens
     lexer_token_list *token_list = init_token_list();
     lexer_context *lexer = init_lexer(command);
     lexer_token *token = next_token(lexer);
